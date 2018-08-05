@@ -140,7 +140,7 @@ git-init gi:
 	git push -u origin master
 
 git-update gu:
-	git add Makefile README.md
+	git add Makefile README.md opencv_setup.sh
 	git commit -m "modify contents"
 	git push
 
