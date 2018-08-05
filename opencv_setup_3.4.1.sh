@@ -31,6 +31,7 @@ sudo apt-get install libopencore-amrnb-dev libopencore-amrwb-dev
 sudo apt-get install libgphoto2-dev libeigen3-dev libhdf5-dev doxygen
 
 ### make a dir to build
+rm -rf opencv_build_$VERSION
 mkdir opencv_build_$VERSION
 cd opencv_build_$VERSION
 
@@ -49,7 +50,6 @@ cd ..
 
 #### now compile and install OpenCV with contrib modules
 # create a build directory
-cd opencv_build_$VERSION
 mkdir build
 cd build
 
