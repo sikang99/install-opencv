@@ -2,9 +2,9 @@
 
 VERSION=github
 
-rm -rf opencv_build_$(VERSION)
-mkdir opencv_build_$(VERSION)
-cd opencv_build_$(VERSION) 
+rm -rf opencv_build_$VERSION
+mkdir opencv_build_$VERSION
+cd opencv_build_$VERSION 
 
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git

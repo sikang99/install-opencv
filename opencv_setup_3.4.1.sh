@@ -30,27 +30,32 @@ sudo apt-get install libxvidcore-dev libx264-dev
 sudo apt-get install libopencore-amrnb-dev libopencore-amrwb-dev
 sudo apt-get install libgphoto2-dev libeigen3-dev libhdf5-dev doxygen
 
+### make a dir to build
+mkdir opencv_build_$VERSION
+cd opencv_build_$VERSION
+
 ### downloading opencv and opencv_contrib packages from their GitHub repositories
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
 
 ### checkout the same version opencv and opencv_contrib
 cd opencv 
-git checkout $(VERSION)
+git checkout $VERSION
 cd ..
 
 cd opencv_contrib
-git checkout $(VERSION)
+git checkout $VERSION
 cd ..
 
 #### now compile and install OpenCV with contrib modules
 # create a build directory
-cd opencv
+cd opencv_build_$VERSION
 mkdir build
 cd build
 
 #  configure our build using cmake
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
+cmake \
+    -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D INSTALL_C_EXAMPLES=ON \
     -D INSTALL_PYTHON_EXAMPLES=ON \
