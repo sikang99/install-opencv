@@ -5,6 +5,7 @@
 ### Because opencv video I/O depends heavily on FFmpeg. And on some system opencv binaries provided packages are not compiled.
 ### Therefor we have no way rather than build it from source. 
 
+VERSION=3.4.1
 
 ### first update and upgrade pre-install apt-get packages.
 sudo apt-get update
@@ -35,11 +36,11 @@ git clone https://github.com/opencv/opencv_contrib.git
 
 ### checkout the same version opencv and opencv_contrib
 cd opencv 
-git checkout 3.4.1 
+git checkout $(VERSION)
 cd ..
 
 cd opencv_contrib
-git checkout 3.4.1
+git checkout $(VERSION)
 cd ..
 
 #### now compile and install OpenCV with contrib modules
@@ -50,12 +51,12 @@ cd build
 
 #  configure our build using cmake
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-	-D CMAKE_INSTALL_PREFIX=/usr/local \
-	-D INSTALL_C_EXAMPLES=ON \
-	-D INSTALL_PYTHON_EXAMPLES=ON \
-	-D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-        -D PYTHON_EXECUTABLE=/usr/bin/python3 \
-	-D BUILD_EXAMPLES=ON ..
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D INSTALL_C_EXAMPLES=ON \
+    -D INSTALL_PYTHON_EXAMPLES=ON \
+    -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+    -D PYTHON_EXECUTABLE=/usr/bin/python3 \
+    -D BUILD_EXAMPLES=ON ..
 
 # OPENCV_EXTRA_MODULES_PATH path can be differenet depending upon opencv_contrib/modules location
 # python executable path can be found by entering following code in python terminal 
@@ -83,9 +84,10 @@ find /usr/local/lib/ -type f -name "cv2*.so"
 #/usr/local/lib/python3.6/dist-packages/cv2.cpython-36m-x86_64-linux-gnu.so
 # now we need to rename it to cv2.so
 
-cd /usr/local/lib/python3.5/dist-packages/
+cd /usr/local/lib/python3.6/dist-packages/
 sudo mv cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
 
 ## well that's it! to confirm your installation go to the python terminal and enter
 ## import cv2; print(cv2.__version__)
 ## if that outputs "3.4.1" and we are done !!!
+

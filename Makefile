@@ -67,26 +67,26 @@ purge:
 4 configure:
 	cd build && \
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
--D CMAKE_INSTALL_PREFIX=/usr/local \
--D WITH_TBB=OFF \
--D WITH_IPP=OFF \
--D WITH_1394=OFF \
--D BUILD_WITH_DEBUG_INFO=OFF \
--D BUILD_DOCS=OFF \
--D INSTALL_C_EXAMPLES=ON \
--D INSTALL_PYTHON_EXAMPLES=ON \
--D BUILD_EXAMPLES=OFF \
--D BUILD_TESTS=OFF \
--D BUILD_PERF_TESTS=OFF \
--D WITH_QT=OFF \
--D WITH_GTK=ON \
--D WITH_OPENGL=ON \
--D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-$(VERSION)/modules \
--D WITH_V4L=ON  \
--D WITH_FFMPEG=ON \
--D WITH_XINE=ON \
--D BUILD_NEW_PYTHON_SUPPORT=ON \
-../opencv-$(VERSION) 2>&1 | tee cmake_messages.txt
+	-D CMAKE_INSTALL_PREFIX=/usr/local \
+	-D WITH_TBB=OFF \
+	-D WITH_IPP=OFF \
+	-D WITH_1394=OFF \
+	-D BUILD_WITH_DEBUG_INFO=OFF \
+	-D BUILD_DOCS=OFF \
+	-D INSTALL_C_EXAMPLES=ON \
+	-D INSTALL_PYTHON_EXAMPLES=ON \
+	-D BUILD_EXAMPLES=OFF \
+	-D BUILD_TESTS=OFF \
+	-D BUILD_PERF_TESTS=OFF \
+	-D WITH_QT=OFF \
+	-D WITH_GTK=ON \
+	-D WITH_OPENGL=ON \
+	-D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-$(VERSION)/modules \
+	-D WITH_V4L=ON  \
+	-D WITH_FFMPEG=ON \
+	-D WITH_XINE=ON \
+	-D BUILD_NEW_PYTHON_SUPPORT=ON \
+	../opencv-$(VERSION) 2>&1 | tee cmake_messages.txt
 	@echo "> make 5 stage"
 
 5 build:
@@ -140,8 +140,9 @@ git-init gi:
 	git push -u origin master
 
 git-update gu:
-	git add Makefile README.md opencv_setup.sh
-	git commit -m "modify contents"
+	git add Makefile README.md *.sh
+	#git commit -m "modify contents"
+	git commit -m "add shell scripts"
 	git push
 
 #-------------------------------------------------------------------------------
