@@ -110,11 +110,16 @@ ubuntu-remove ur:
 	sudo apt remove -y libopencv-core-dev libopencv-contrib-dev
 
 #-------------------------------------------------------------------------------
+git-init gi:
+	rm -rf .git/
+	git init
+
 git-update gu:
 	git add Makefile README.md
-	git commit -m "1st Upload"
-	git remote add origin https://sikang99:kang1121@github.com/sikang99/install-opencv.git
-	git push -u https://sikang99:kang1121@github.com/sikang99/install-opencv
+	#git commit -m "1st Upload"
+	git commit -m "modify contents"
+	git remote add origin sikang99:kang1121@github.com/sikang99/install-opencv.git
+	git push -u origin master
 	#git push
 
 
