@@ -1,5 +1,6 @@
 # install-opencv
-Installation for the latest version of OpenCV
+
+Installation procedure for the latest version of OpenCV
 
 
 ### Information
@@ -11,7 +12,7 @@ Installation for the latest version of OpenCV
 
 ### Installation
 
-To install opencv 3.2.0 on ubuntu 18.04, do it as following.
+To install opencv 3.2.0 on ubuntu 18.04 without buidling from source, do it as followes.
 
 ```sh
 $ sudo apt install libopencv-core-dev libopencv-contrib-dev
@@ -20,5 +21,5 @@ $ sudo apt install libopencv-core-dev libopencv-contrib-dev
 
 ### History
 
-- 2018/08/04: OpenCV 3.4.2 install failure
+- 2018/08/05: Still the failure cause is not found
 - 2018/08/04: OpenCV 3.4.2 install failure
