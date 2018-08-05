@@ -26,22 +26,28 @@ edit-make em:
 	vi Makefile
 
 #-------------------------------------------------------------------------------
+purge:
+	sudo apt-get purge libopencv* python-opencv
+	sudo apt-get autoremove
+
 0 clean:
 	rm -rf opencv-$(VERSION) opencv_contrib-$(VERSION) build
 	mkdir build && ls -al build
 	@echo "> make 1 stage"
 
 1 prepare:
-	sudo apt-get install build-essential cmake
-	sudo apt-get install pkg-config
-	sudo apt-get install libjpeg-dev libtiff5-dev libpng-dev
-	sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libxvidcore-dev libx264-dev libxine2-dev
-	sudo apt-get install libv4l-dev v4l-utils
-	sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
-	sudo apt-get install libgtk2.0-dev
-	sudo apt-get install mesa-utils libgl1-mesa-dri libgtkgl2.0-dev libgtkglext1-dev
-	sudo apt-get install libatlas-base-dev gfortran libeigen3-dev
-	sudo apt-get install python2.7-dev python3-dev python-numpy python3-numpy
+	sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
+	sudo apt install ubuntu-restricted-extras
+	sudo apt install build-essential cmake
+	sudo apt install pkg-config
+	sudo apt install libjpeg-dev libtiff5-dev libpng-dev
+	sudo apt install libavcodec-dev libavformat-dev libswscale-dev libxvidcore-dev libx264-dev libxine2-dev
+	sudo apt install libv4l-dev v4l-utils
+	sudo apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+	sudo apt install libgtk2.0-dev
+	sudo apt install mesa-utils libgl1-mesa-dri libgtkgl2.0-dev libgtkglext1-dev
+	sudo apt install libatlas-base-dev gfortran libeigen3-dev
+	sudo apt install python2.7-dev python3-dev python-numpy python3-numpy
 	@echo "> make 2 stage"
 
 # opencv 3.4.2
@@ -80,7 +86,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D WITH_FFMPEG=ON \
 -D WITH_XINE=ON \
 -D BUILD_NEW_PYTHON_SUPPORT=ON \
-../opencv-$(VERSION)/ 2>&1 | tee cmake_messages.txt
+../opencv-$(VERSION) 2>&1 | tee cmake_messages.txt
 	@echo "> make 5 stage"
 
 5 build:
@@ -97,6 +103,21 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	pkg-config --modversion opencv
 
 #-------------------------------------------------------------------------------
+build-github:
+	mkdir opencv_build
+	cd opencv_build && git clone https://github.com/opencv/opencv.git
+	cd opencv_build && git clone https://github.com/opencv/opencv_contrib.git
+	cd opencv_build && mkdir build
+	cd opencv_build/build && \
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D INSTALL_C_EXAMPLES=ON \
+    -D INSTALL_PYTHON_EXAMPLES=ON \
+    -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules \
+    -D BUILD_EXAMPLES=ON ../opencv
+	cd opencv_build/build && make -j4 
+
+#-------------------------------------------------------------------------------
 ubuntu u:
 	@echo ""
 	@echo "make (ubuntu) [install|remove]"
@@ -104,10 +125,10 @@ ubuntu u:
 
 # openv 3.2.0 version in ubuntu 18.04
 ubuntu-install ui:
-	sudo apt install -y libopencv-core-dev libopencv-contrib-dev
+	sudo apt install -y libopencv-core-dev libopencv-contrib-dev python3-opencv
 
 ubuntu-remove ur:
-	sudo apt remove -y libopencv-core-dev libopencv-contrib-dev
+	sudo apt remove -y libopencv-core-dev libopencv-contrib-dev python3-opencv
 
 #-------------------------------------------------------------------------------
 git-init gi:
