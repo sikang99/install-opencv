@@ -113,12 +113,12 @@ ubuntu-remove ur:
 git-init gi:
 	rm -rf .git/
 	git init
+	git remote add origin sikang99:kang1121@github.com/sikang99/install-opencv.git
 
 git-update gu:
 	git add Makefile README.md
 	#git commit -m "1st Upload"
 	git commit -m "modify contents"
-	git remote add origin sikang99:kang1121@github.com/sikang99/install-opencv.git
 	git push -u origin master
 	#git push
 
