@@ -13,6 +13,10 @@ Installation procedure for the latest version of OpenCV
 2. [Ubuntu 18.04에 opencv_contrib 포함하여 OpenCV 3.4.2 설치](http://webnautes.tistory.com/1186)
 3. [How to install OpenCV on Ubuntu 18.04](https://linuxize.com/post/how-to-install-opencv-on-ubuntu-18-04/)
 4. [Installing OpenCV and Python3 on Ubuntu 18.04](https://gist.github.com/Mahedi-61/804a663b449e4cdb31b5fea96bb9d561)
+5. [How to Install OpenCV in Ubuntu 18.04 LTS for C / C++ (Linux)](http://www.codebind.com/linux-tutorials/install-opencv-ubuntu-18-04-lts-c-cpp-linux/)
+
+- [How to Install OpenCV3 for Python3 on Ubuntu 18.04 LTS](https://medium.com/@rabbi.cse.sust.bd/how-to-install-opencv3-for-python3-in-ubuntu-18-04-lts-4f369f5c514d)
+
 
 
 
